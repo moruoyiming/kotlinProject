@@ -1,0 +1,6 @@
+java 和 kotlin 互相调用
+1.解决冲突
+
+
+2.调用java函数  String！ ，由于是!  最好用一个var 来接受 var str :String ?=
+//
