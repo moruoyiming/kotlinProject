@@ -4,21 +4,47 @@ import com.kotlin.demo.beans.LoginResponse
 import com.kotlin.demo.beans.LoginResponseWrapper
 import io.reactivex.Observable
 import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 
-/**
- * <pre>
- *     author: jian
- *     Date  : 2020/6/18 8:14 PM
- *     Description:
- * </pre>
- */
+//客户端API 可以访问服务器的APi
 interface WanAndroidApi {
 
+    //登录 https://www.wanandroid.com/user/login
     @POST("/user/login")
+    @FormUrlEncoded
     fun loginAction(
         @Field("username") username: String,
-        @Field("userpwd") userpwd: String
+        @Field("password") password: String
+    ): Observable<LoginResponseWrapper<LoginResponse>>
+
+    //注册 https://www.wanandroid.com/user/register
+    @POST("/user/register")
+    @FormUrlEncoded
+    fun registerAction(
+        @Field("username") username: String,
+        @Field("password") password: String,
+        @Field("repassword") repassword: String
     )
-    : Observable<LoginResponseWrapper<LoginResponse>>
+            : Observable<LoginResponseWrapper<LoginResponse>>
+
+
+    // 首页文章列表 https://www.wanandroid.com/article/list/0/json
+    @GET("/article/list/0/json")
+    @FormUrlEncoded
+    fun articleAction(
+        @Field("username") username: String,
+        @Field("password") password: String,
+        @Field("repassword") repassword: String
+    )
+            : Observable<LoginResponseWrapper<LoginResponse>>
+
+    //首页banner https://www.wanandroid.com/banner/json
+    @GET("/banner/json")
+    @FormUrlEncoded
+    fun bannerAction(
+        @Field("username") username: String
+    )
+            : Observable<LoginResponseWrapper<LoginResponse>>
 }

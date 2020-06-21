@@ -13,7 +13,14 @@ data class LoginResponse(
     val chapterTops: List<*>,
     val collectIds: List<*>,
     val email: String?,
-    val sdsd: String
+    val icon: String?,
+    val id: Int,
+    val nickname: String,
+    val password: String?,
+    val publicName: String,
+    val token: String?,
+    val type: Int,
+    val username: String
 
 ) {
 }
