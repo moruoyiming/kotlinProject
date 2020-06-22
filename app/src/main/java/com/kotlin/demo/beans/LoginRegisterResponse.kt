@@ -8,7 +8,7 @@ package com.kotlin.demo.beans
  * </pre>
  */
 // 通配符 Java ?      KT  *
-data class LoginResponse(
+data class LoginRegisterResponse(
     val admin: Boolean,
     val chapterTops: List<*>,
     val collectIds: List<*>,

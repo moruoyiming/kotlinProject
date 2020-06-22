@@ -4,10 +4,15 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.kotlin.demo.R
+import com.kotlin.demo.api.WanAndroidApi
 import com.kotlin.demo.base.BaseActivity
-import com.kotlin.demo.beans.LoginResponse
+import com.kotlin.demo.beans.LoginRegisterResponse
 import com.kotlin.demo.modules.login.inter.LoginPresenter
 import com.kotlin.demo.modules.login.inter.LoginView
+import com.kotlin.demo.network.ApiClient
+import com.kotlin.demo.network.ApiResponse
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
 
 /**
@@ -30,20 +35,31 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginView {
         //id  内部根据 = 知道是要setId  否则  getId
         when (view.id) {
             R.id.user_login_bg -> {
-                val userName = user_phone_et.text.toString()
+                val username = user_phone_et.text.toString()
                 val password = user_password_et.text.toString()
-                Log.d("TAG", "userName:$userName ,password: $password")
-                presenter.loginAction(this, userName, password)
+                Log.d("TAG", "username:$username ,password: $password")
+                presenter.loginAction(this, username, password)
 //                mvc实现
                 //Java WanAndroidAPI.class --- WanAndroidAPI::class.java
-//                val api: WanAndroidApi =
-//                    ApiClient.instance.instanceRetrofit(WanAndroidApi::class.java)
-//
-//                api.loginAction(userName, userPwd)
-//                    .subscribeOn(Schedulers.io())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe()
+                val api: WanAndroidApi =
+                    ApiClient.instance.instanceRetrofit(WanAndroidApi::class.java)
+                api.loginAction(username, password)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(object : ApiResponse<LoginRegisterResponse>(this) {
+                        override fun onSuccess(data: LoginRegisterResponse?) {
+                            TODO("Not yet implemented")
+                        }
 
+                        override fun onFailed(msg: String?) {
+                            TODO("Not yet implemented")
+                        }
+
+                    })
+//                    .subscribe(object : Consumer<LoginResponseWrapper<LoginResponse>> {
+//                        override fun accept(t: LoginResponseWrapper<LoginResponse>) {
+//                        }
+//                    })
             }
 
         }
@@ -62,7 +78,7 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginView {
         return LoginPresenterImpl(this);
     }
 
-    override fun loginSuccess(loginBean: LoginResponse?) {
+    override fun loginSuccess(loginBean: LoginRegisterResponse?) {
         Toast.makeText(this, "login success", Toast.LENGTH_LONG).show()
     }
 

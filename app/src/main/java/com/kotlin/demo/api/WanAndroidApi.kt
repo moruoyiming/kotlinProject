@@ -1,6 +1,6 @@
 package com.kotlin.demo.api
 
-import com.kotlin.demo.beans.LoginResponse
+import com.kotlin.demo.beans.LoginRegisterResponse
 import com.kotlin.demo.beans.LoginResponseWrapper
 import io.reactivex.Observable
 import retrofit2.http.Field
@@ -17,7 +17,7 @@ interface WanAndroidApi {
     fun loginAction(
         @Field("username") username: String,
         @Field("password") password: String
-    ): Observable<LoginResponseWrapper<LoginResponse>>
+    ): Observable<LoginResponseWrapper<LoginRegisterResponse>>
 
     //注册 https://www.wanandroid.com/user/register
     @POST("/user/register")
@@ -27,7 +27,7 @@ interface WanAndroidApi {
         @Field("password") password: String,
         @Field("repassword") repassword: String
     )
-            : Observable<LoginResponseWrapper<LoginResponse>>
+            : Observable<LoginResponseWrapper<LoginRegisterResponse>>
 
 
     // 首页文章列表 https://www.wanandroid.com/article/list/0/json
@@ -38,7 +38,7 @@ interface WanAndroidApi {
         @Field("password") password: String,
         @Field("repassword") repassword: String
     )
-            : Observable<LoginResponseWrapper<LoginResponse>>
+            : Observable<LoginResponseWrapper<LoginRegisterResponse>>
 
     //首页banner https://www.wanandroid.com/banner/json
     @GET("/banner/json")
@@ -46,5 +46,5 @@ interface WanAndroidApi {
     fun bannerAction(
         @Field("username") username: String
     )
-            : Observable<LoginResponseWrapper<LoginResponse>>
+            : Observable<LoginResponseWrapper<LoginRegisterResponse>>
 }
