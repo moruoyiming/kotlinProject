@@ -1,5 +1,6 @@
 package com.kotlin.demo.network
 
+import com.kotlin.demo.Flag
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -28,7 +29,7 @@ class ApiClient {
             .writeTimeout(10,TimeUnit.SECONDS)
             .build()
         val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl(Flag.BASE_URL)
             //请求方  <-
             .client(okHttpClient)
             //响应方  ->

@@ -1,6 +1,5 @@
 package com.kotlin.demo.modules.register
 
-import android.os.Bundle
 import android.widget.Toast
 import com.kotlin.demo.R
 import com.kotlin.demo.base.BaseActivity
@@ -8,10 +7,8 @@ import com.kotlin.demo.beans.LoginRegisterResponse
 import com.kotlin.demo.modules.register.inter.RegisterPersenter
 import com.kotlin.demo.modules.register.inter.RegisterView
 import com.xiangxue.kotlinproject.modules.register.RegisterPresenterImpl
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.user_password_et
-import kotlinx.android.synthetic.main.activity_login.user_phone_et
 import kotlinx.android.synthetic.main.activity_user_register.*
+
 
 class RegisterActivity : BaseActivity<RegisterPersenter>(), RegisterView {
 

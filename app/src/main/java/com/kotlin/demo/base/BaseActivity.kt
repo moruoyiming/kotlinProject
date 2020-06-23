@@ -11,6 +11,7 @@ abstract class BaseActivity<P> : AppCompatActivity() where P : IBasePresenter {/
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
         presenter = createPresenter()
+        initView();
     }
 
     abstract fun getLayoutId(): Int

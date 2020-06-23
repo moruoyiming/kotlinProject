@@ -11,7 +11,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 //Presenter层 实现
-class LoginPresenterImpl(private val loginView: LoginView?) : LoginPresenter,
+class LoginPresenterImpl(private var loginView: LoginView?) : LoginPresenter,
     LoginPresenter.OnLoginListener {
 
     // 需要M 去请求服务器
@@ -20,26 +20,25 @@ class LoginPresenterImpl(private val loginView: LoginView?) : LoginPresenter,
     override fun loginAction(context: Context, username: String, password: String) {
         //                mvc实现
         //Java WanAndroidAPI.class --- WanAndroidAPI::class.java
-                val api: WanAndroidApi =
-                    ApiClient.instance.instanceRetrofit(WanAndroidApi::class.java)
-                api.loginAction(username, password)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(object : ApiResponse<LoginRegisterResponse>(context){
-                        override fun onSuccess(data: LoginRegisterResponse?) {
-                            loginView?.loginSuccess(data)
-                        }
+        val api: WanAndroidApi =
+            ApiClient.instance.instanceRetrofit(WanAndroidApi::class.java)
+        api.loginAction(username, password)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiResponse<LoginRegisterResponse>(context) {
+                override fun onSuccess(data: LoginRegisterResponse?) {
+                    loginView?.loginSuccess(data)
+                }
 
-                        override fun onFailed(msg: String?) {
-                            loginView?.loginFailed(msg)
-                        }
+                override fun onFailed(msg: String?) {
+                    loginView?.loginFailed(msg)
+                }
 
-                    })
+            })
     }
 
 
     override fun unAttachView() {
-//        loginView? = null;
     }
 
     override fun loginSuccess(loginBean: LoginRegisterResponse?) {

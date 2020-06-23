@@ -1,5 +1,6 @@
 package com.kotlin.demo.modules.login
 
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -9,11 +10,13 @@ import com.kotlin.demo.base.BaseActivity
 import com.kotlin.demo.beans.LoginRegisterResponse
 import com.kotlin.demo.modules.login.inter.LoginPresenter
 import com.kotlin.demo.modules.login.inter.LoginView
+import com.kotlin.demo.modules.main.MainActivity
+import com.kotlin.demo.modules.register.RegisterActivity
 import com.kotlin.demo.network.ApiClient
 import com.kotlin.demo.network.ApiResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_user_login.*
 
 /**
  * 违背单一原则  C  V  M
@@ -34,7 +37,7 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginView {
     private val onClickListener = View.OnClickListener { view ->
         //id  内部根据 = 知道是要setId  否则  getId
         when (view.id) {
-            R.id.user_login_bg -> {
+            R.id.user_login_bt -> {
                 val username = user_phone_et.text.toString()
                 val password = user_password_et.text.toString()
                 Log.d("TAG", "username:$username ,password: $password")
@@ -61,17 +64,21 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginView {
 //                        }
 //                    })
             }
-
+            R.id.user_register_tv -> {
+                val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+                startActivity(intent)
+            }
         }
 
     }
 
     override fun getLayoutId(): Int {
-        return R.layout.activity_login
+        return R.layout.activity_user_login
     }
 
     override fun initView() {
-        user_login_bg.setOnClickListener(onClickListener)
+        user_login_bt.setOnClickListener(onClickListener)
+        user_register_tv.setOnClickListener(onClickListener)
     }
 
     override fun createPresenter(): LoginPresenter {
@@ -80,6 +87,8 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginView {
 
     override fun loginSuccess(loginBean: LoginRegisterResponse?) {
         Toast.makeText(this, "login success", Toast.LENGTH_LONG).show()
+        val intent = Intent(this@LoginActivity,  MainActivity::class.java)
+        startActivity(intent)
     }
 
     override fun loginFailed(message: String?) {
@@ -87,6 +96,7 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginView {
     }
 
     override fun recycle() {
+        presenter.unAttachView()
     }
 
 }
