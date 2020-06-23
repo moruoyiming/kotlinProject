@@ -41,21 +41,21 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginView {
                 presenter.loginAction(this, username, password)
 //                mvc实现
                 //Java WanAndroidAPI.class --- WanAndroidAPI::class.java
-                val api: WanAndroidApi =
-                    ApiClient.instance.instanceRetrofit(WanAndroidApi::class.java)
-                api.loginAction(username, password)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(object : ApiResponse<LoginRegisterResponse>(this) {
-                        override fun onSuccess(data: LoginRegisterResponse?) {
-                            TODO("Not yet implemented")
-                        }
-
-                        override fun onFailed(msg: String?) {
-                            TODO("Not yet implemented")
-                        }
-
-                    })
+//                val api: WanAndroidApi =
+//                    ApiClient.instance.instanceRetrofit(WanAndroidApi::class.java)
+//                api.loginAction(username, password)
+//                    .subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(object : ApiResponse<LoginRegisterResponse>(this) {
+//                        override fun onSuccess(data: LoginRegisterResponse?) {
+//                            TODO("Not yet implemented")
+//                        }
+//
+//                        override fun onFailed(msg: String?) {
+//                            TODO("Not yet implemented")
+//                        }
+//
+//                    })
 //                    .subscribe(object : Consumer<LoginResponseWrapper<LoginResponse>> {
 //                        override fun accept(t: LoginResponseWrapper<LoginResponse>) {
 //                        }
@@ -82,7 +82,7 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginView {
         Toast.makeText(this, "login success", Toast.LENGTH_LONG).show()
     }
 
-    override fun loginFailed(message: String) {
+    override fun loginFailed(message: String?) {
         Toast.makeText(this, "login failed", Toast.LENGTH_LONG).show()
     }
 

@@ -8,6 +8,6 @@ interface LoginView {
 
     fun loginSuccess(loginBean: LoginRegisterResponse ?)
 
-    fun loginFailed(message: String);
+    fun loginFailed(message: String?);
 
 }

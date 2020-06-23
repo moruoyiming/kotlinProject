@@ -1,7 +1,8 @@
 package com.xiangxue.kotlinproject.modules.register
 
 import android.content.Context
-import com.xiangxue.kotlinproject.entity.LoginRegisterResponse
+import com.kotlin.demo.beans.LoginRegisterResponse
+import com.kotlin.demo.modules.register.RegisterModuleImpl
 import com.kotlin.demo.modules.register.inter.RegisterPersenter
 import com.kotlin.demo.modules.register.inter.RegisterView
 

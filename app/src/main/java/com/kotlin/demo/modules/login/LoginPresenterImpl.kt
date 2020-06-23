@@ -27,11 +27,11 @@ class LoginPresenterImpl(private val loginView: LoginView?) : LoginPresenter,
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(object : ApiResponse<LoginRegisterResponse>(context){
                         override fun onSuccess(data: LoginRegisterResponse?) {
-                            TODO("Not yet implemented")
+                            loginView?.loginSuccess(data)
                         }
 
                         override fun onFailed(msg: String?) {
-                            TODO("Not yet implemented")
+                            loginView?.loginFailed(msg)
                         }
 
                     })

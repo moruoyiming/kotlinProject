@@ -13,11 +13,11 @@ abstract class BaseActivity<P> : AppCompatActivity() where P : IBasePresenter {/
         presenter = createPresenter()
     }
 
-    abstract fun createPresenter(): P
-
     abstract fun getLayoutId(): Int
 
     abstract fun initView()
+
+    abstract fun createPresenter(): P
 
     abstract fun recycle()
 

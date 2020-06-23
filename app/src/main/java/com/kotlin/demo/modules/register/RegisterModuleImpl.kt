@@ -1,12 +1,12 @@
-package com.xiangxue.kotlinproject.modules.register
+package com.kotlin.demo.modules.register
 
 import android.content.Context
-import com.xiangxue.kotlinproject.api.WanAndroidAPI
-import com.xiangxue.kotlinproject.entity.LoginRegisterResponse
+import com.kotlin.demo.api.WanAndroidApi
+import com.kotlin.demo.beans.LoginRegisterResponse
 import com.kotlin.demo.modules.register.inter.RegisterModule
 import com.kotlin.demo.modules.register.inter.RegisterPersenter
-import com.xiangxue.kotlinproject.net.APIClient
-import com.xiangxue.kotlinproject.net.APIResponse
+import com.kotlin.demo.network.ApiClient
+import com.kotlin.demo.network.ApiResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -23,17 +23,18 @@ class RegisterModuleImpl : RegisterModule {
         callback: RegisterPersenter.OnRegisterListener
     ) {
         // 网络模型
-        APIClient.instance.instanceRetrofit(WanAndroidAPI::class.java)
+        ApiClient.instance.instanceRetrofit(WanAndroidApi::class.java)
             .registerAction(username, password, repassword)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : APIResponse<LoginRegisterResponse>(context) {
-                override fun success(data: LoginRegisterResponse?) {
+            .subscribe(object : ApiResponse<LoginRegisterResponse>(context) {
+
+                override fun onSuccess(data: LoginRegisterResponse?) {
                     callback.registerSuccess(data)
                 }
 
-                override fun failure(errorMsg: String?) {
-                    callback.registerFailed(errorMsg)
+                override fun onFailed(msg: String?) {
+                    callback.registerFailed(msg)
                 }
 
             })

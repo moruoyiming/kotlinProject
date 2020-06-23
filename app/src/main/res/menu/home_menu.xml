@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home_query"
+        android:title="首页查询" />
+    <item
+        android:id="@+id/home_version"
+        android:title="首页授权" />
+
+    <item
+        android:id="@+id/home_skin"
+        android:title="首页换肤" />
+
+    <item
+        android:id="@+id/home_set"
+        android:title="设置首页" />
+
+    <item
+        android:id="@+id/app_bar_search"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Search"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="always" />
+</menu>
