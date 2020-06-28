@@ -1,4 +1,4 @@
-package com.xiangxue.kotlinproject.modules.register
+package com.kotlin.demo.modules.register
 
 import android.content.Context
 import com.kotlin.demo.beans.LoginRegisterResponse

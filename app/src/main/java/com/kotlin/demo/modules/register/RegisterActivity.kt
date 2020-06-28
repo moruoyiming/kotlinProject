@@ -6,7 +6,6 @@ import com.kotlin.demo.base.BaseActivity
 import com.kotlin.demo.beans.LoginRegisterResponse
 import com.kotlin.demo.modules.register.inter.RegisterPersenter
 import com.kotlin.demo.modules.register.inter.RegisterView
-import com.xiangxue.kotlinproject.modules.register.RegisterPresenterImpl
 import kotlinx.android.synthetic.main.activity_user_register.*
 
 

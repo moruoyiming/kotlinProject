@@ -45,6 +45,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".modules.register.RegisterActivity" />
+        <activity android:name=".modules.main.MainActivity" />
     </application>
 
 </manifest>

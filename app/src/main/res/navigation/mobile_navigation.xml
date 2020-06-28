@@ -8,19 +8,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.kotlin.demo.fragment.HomeFragment"
+        android:name="com.kotlin.demo.modules.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_collect"
-        android:name="com.kotlin.demo.fragment.CollectFragment"
+        android:name="com.kotlin.demo.modules.collect.CollectFragment"
         android:label="@string/title_collect"
         tools:layout="@layout/fragment_collect" />
 
     <fragment
         android:id="@+id/navigation_personal"
-        android:name="com.kotlin.demo.fragment.PersonalFragment"
+        android:name="com.kotlin.demo.modules.personal.PersonalFragment"
         android:label="@string/title_personal"
         tools:layout="@layout/fragment_personal" />
 

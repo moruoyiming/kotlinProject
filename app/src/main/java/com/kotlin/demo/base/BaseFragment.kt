@@ -9,24 +9,26 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
 abstract class BaseFragment<P> : Fragment() where P : IBasePresenter {
+
     lateinit var presenter: P
+
+    private lateinit var mActivity: AppCompatActivity
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        //java mActivity = (AppCompatActivity)context
+        //kt context as AppCompatActivity
+        mActivity = context as AppCompatActivity
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         presenter = createPresenter()
+        initView()
     }
+
+
 
 
     abstract fun getLayoutId(): Int

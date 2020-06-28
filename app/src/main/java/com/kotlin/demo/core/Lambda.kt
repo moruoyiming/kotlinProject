@@ -44,6 +44,7 @@ fun main() {
     }
 
     var method12 = { println("sdfasdfasdfs") }
+    method12()
 
     var method13 = { sex: Char -> if (sex == 'M') "代表是男" else "代表是女" }
     println("method13 : ${method13('M')}")
@@ -53,6 +54,12 @@ fun main() {
     method14 = { println(" 覆盖 我的值 ${it}") }
     println(method14(15))
 
-    var method15 = {}
+    // 需求  打印并返回
+    var method15 = { number: Int -> println("打印打印 $number ")
+        number+10000
+        println("返回")
+    }
+
+    println("method15 :${method15(13123)}")
 
 }

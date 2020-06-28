@@ -1,6 +1,6 @@
 package com.kotlin.demo.network
 
-import com.kotlin.demo.Flag
+import com.kotlin.demo.config.Flag
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

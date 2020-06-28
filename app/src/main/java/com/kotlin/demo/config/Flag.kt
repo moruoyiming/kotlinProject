@@ -1,4 +1,4 @@
-package com.kotlin.demo
+package com.kotlin.demo.config
 
 object Flag {
     val BASE_URL: String = "https://www.wanandroid.com"
