@@ -2,6 +2,8 @@ package com.kotlin.demo.modules.collect
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,17 +20,17 @@ class CollectFragment : BaseFragment<CollectPresenter>(), CollectView {
 
 
     override fun getLayoutId(): Int {
-        Toast.makeText(activity, "收藏", Toast.LENGTH_LONG).show()
+//        Toast.makeText(activity, "收藏", Toast.LENGTH_LONG).show()
         return R.layout.fragment_collect
     }
 
     // 构造代码块
     init {
-        setHasOptionsMenu(true)
+        setHasOptionsMenu(false)
     }
 
-    override fun initView() {
-        presenter.requestQueryAll()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         //　TODO Insert　动作
         addData.setOnClickListener {
             val names = arrayOf<String>(
@@ -69,6 +71,16 @@ class CollectFragment : BaseFragment<CollectPresenter>(), CollectView {
         clearData.setOnClickListener {
             presenter.requestDeleteAll()
         }
+
+    }
+
+    override fun initView() {
+        presenter.requestQueryAll()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.personal_menu, menu)
     }
 
     override fun createPresenter(): CollectPresenter {
@@ -81,7 +93,6 @@ class CollectFragment : BaseFragment<CollectPresenter>(), CollectView {
 
     override fun onSuccess(result: List<Article>?) {
         Log.d(Flag.TAG, "showResultSuccess result: ${result.toString()} , LV:${recyclerView} ")
-
         // 数据 给  recyclerView
         recyclerView.layoutManager = LinearLayoutManager(activity)
         val adapter = CollectAdapter()
