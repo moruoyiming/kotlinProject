@@ -11,10 +11,11 @@ import java.io.IOException
 
 abstract class NetWorkResultData : Callback {
     override fun onFailure(call: Call, e: IOException) {
-        requestError("")
         Handler(Looper.getMainLooper(), object : Handler.Callback {
             override fun handleMessage(msg: Message): Boolean {
-                e.message?.let { msg }
+                e.message?.myLet {
+                    requestError(this)
+                }
                 return false
             }
 
@@ -22,10 +23,20 @@ abstract class NetWorkResultData : Callback {
     }
 
     override fun onResponse(call: Call, response: Response) {
-        TODO("Not yet implemented")
+        // 在主线程 执行
+        Handler(Looper.getMainLooper(), Handler.Callback {
+            requestSuccess(response)
+            false  // 正常执行下去 false
+        }).sendEmptyMessage(0)
     }
 
     abstract fun requestError(info: String);
 
     abstract fun requestSuccess(result: Response);
+
+    fun <T, R> T.myLet(mm: T.(T) -> R): R {
+        // T == this
+        // mm(this) == this
+        return mm(this)
+    }
 }

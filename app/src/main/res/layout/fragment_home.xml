@@ -286,8 +286,8 @@
         <!-- 自定义View -->
         <!--<ListView-->
         <!--<com.xiangxue.kotlinproject.view.ImplantListView-->
-        <ListView
-            android:id="@+id/industry_information_lv"
+        <com.kotlin.demo.view.CustomListView
+            android:id="@+id/home_listview"
             style="@style/width_match_height_wrap"
             android:layout_marginTop="1dp"
             android:background="@color/white"
