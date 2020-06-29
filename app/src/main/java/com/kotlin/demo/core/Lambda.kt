@@ -55,11 +55,50 @@ fun main() {
     println(method14(15))
 
     // 需求  打印并返回
-    var method15 = { number: Int -> println("打印打印 $number ")
-        number+10000
+    var method15 = { number: Int ->
+        println("打印打印 $number ")
+        number + 10000
         println("返回")
     }
 
     println("method15 :${method15(13123)}")
 
+//TODO ===========================高阶登录需求================================
+
+    loginEngine("jianruilin", "123456")
+
+    run {
+
+    }
+}
+
+
+private fun login(username: String, password: String, requestLogin: (String, String) -> Unit) {
+    requestLogin(username, password)
+}
+
+//requestLogin: (String, String)  高阶函数 可以拿出去定义
+
+//对外暴露 requestLogin: (String, String) -> Unit) == {}
+
+fun loginEngine(username: String, password: String): Unit {
+
+    // 使用高阶{}
+    login(username, password) { name, pwd ->
+        if (name == "jianruilin" && pwd == "123456") {
+
+        } else {
+
+        }
+
+    }
+
+}
+
+//requestLogin: (String, String)  高阶函数 可以拿出去定义
+typealias RequestLogin = (String, String) -> Unit
+
+
+private fun login2(username: String, password: String, requestlogin: RequestLogin) {
+    login(username, password, requestlogin)
 }

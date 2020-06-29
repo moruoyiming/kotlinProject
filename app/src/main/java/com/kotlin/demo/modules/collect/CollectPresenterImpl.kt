@@ -23,10 +23,16 @@ class CollectPresenterImpl(var view: CollectView?) : CollectPresenter,
         model.requestDelete(this,*article)
     }
 
+    override fun requestQuery(vararg article: Article) {
+        model.requestQuery(this,*article)
+    }
+
     override fun requestDeleteAll() {
+        model.requestDeleteAll()
     }
 
     override fun requestQueryAll() {
+        model.requestQueryAll()
     }
 
     override fun unAttachView() {

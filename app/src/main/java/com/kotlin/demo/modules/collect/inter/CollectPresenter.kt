@@ -11,6 +11,8 @@ interface CollectPresenter :IBasePresenter {
 
     fun requestDelete(vararg article: Article);
 
+    fun requestQuery(vararg article: Article);
+
     fun requestDeleteAll();
 
     fun requestQueryAll();

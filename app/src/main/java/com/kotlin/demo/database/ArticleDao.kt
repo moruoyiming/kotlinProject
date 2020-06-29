@@ -18,7 +18,7 @@ interface ArticleDao {
 
 
     @Query("SELECT * FROM article_collection ORDER BY ID DESC")
-    fun selectArticles(): List<Article>
+    fun queryArticles(): List<Article>
 
 //    @Query("SELECT article FROM article_collection")
 //    fun selectArticle(article: Article)
