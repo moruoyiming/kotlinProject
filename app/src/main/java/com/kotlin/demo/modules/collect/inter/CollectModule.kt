@@ -12,7 +12,7 @@ interface CollectModule {
 
     fun requestQuery(listener: CollectPresenter.OnCollectListener, vararg article: Article);
 
-    fun requestDeleteAll();
+    fun requestDeleteAll(listener: CollectPresenter.OnCollectListener) // 删除全部
 
-    fun requestQueryAll();
+    fun requestQueryAll(listener: CollectPresenter.OnCollectResponseListener) // 查询全部
 }

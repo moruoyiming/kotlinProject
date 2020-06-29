@@ -7,7 +7,8 @@ import androidx.room.PrimaryKey
 /**
  * 文章实体bean
  */
-@Entity(tableName = "article_collection")
+@Entity
+//    (tableName = "article_collection")
 class Article() {
     //主键  自动增长
     @PrimaryKey(autoGenerate = true)

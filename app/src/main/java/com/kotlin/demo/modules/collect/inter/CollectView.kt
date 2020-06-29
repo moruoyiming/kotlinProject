@@ -5,5 +5,5 @@ import com.kotlin.demo.database.Article
 interface CollectView {
     fun onSuccess(result: List<Article>?)
 
-    fun onError(code: Int, msg: String?)
+    fun showResult(result: Boolean)
 }

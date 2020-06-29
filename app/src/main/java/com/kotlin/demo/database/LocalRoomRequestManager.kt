@@ -12,7 +12,7 @@ class LocalRoomRequestManager : ILocalRequest, IDatabaseRequest {
 
     // Java构造代码块  dao
     init {
-        val studentDatabase: ArticleDatabase? = ArticleDatabase.getDatabase()
+        val studentDatabase: ArticleDatabase? = ArticleDatabase.getDataBase()
         articleDao = studentDatabase?.getArticleDao()
     }
 
@@ -45,11 +45,11 @@ class LocalRoomRequestManager : ILocalRequest, IDatabaseRequest {
     }
 
     override fun deleteAllArticle() {
-        articleDao?.deleteArticles()
+        articleDao?.deleteAllArticle()
     }
 
     override fun queryAllArticle(): List<Article>? {
-       return articleDao?.queryArticles()
+       return articleDao?.queryAllArticles()
     }
 //
 //    // TODO 增加

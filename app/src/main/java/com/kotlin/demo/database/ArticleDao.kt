@@ -12,17 +12,15 @@ interface ArticleDao {
     @Update
     fun updateArticles(vararg article: Article)
 
-    //删除全部
-    @Query("DELETE FROM article_collection")
-    fun deleteArticles()
+    @Delete
+    fun deleteArticles(vararg article: Article)
+
+    // 删除全部
+    @Query("DELETE FROM article")
+    fun deleteAllArticle()
+
+    @Query("SELECT * FROM article ORDER BY ID DESC")
+    fun queryAllArticles(): List<Article>
 
 
-    @Query("SELECT * FROM article_collection ORDER BY ID DESC")
-    fun queryArticles(): List<Article>
-
-//    @Query("SELECT article FROM article_collection")
-//    fun selectArticle(article: Article)
-//
-//    @Query("DELETE article FROM article_collection")
-//    fun deleteArticle(article: Article)
 }
