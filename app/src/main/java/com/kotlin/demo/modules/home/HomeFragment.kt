@@ -1,5 +1,6 @@
 package com.kotlin.demo.modules.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,12 +14,17 @@ import com.kotlin.demo.R
 import com.kotlin.demo.adapter.HomeInfoListAdapter
 import com.kotlin.demo.beans.HomeDataResponse
 import com.kotlin.demo.config.Flag
+import com.kotlin.demo.modules.webview.DetailLinkActivity
 import com.kotlin.demo.network.NetWorkResultData
 import com.kotlin.demo.network.RequestApi
 import kotlinx.android.synthetic.main.fragment_home.*
 import okhttp3.Response
 
 class HomeFragment : Fragment() {
+
+    private lateinit var linkPath1 :String
+    private lateinit var linkPath2 :String
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +37,16 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         requestHomeData()
+        iv_top.setOnClickListener{
+            val intent: Intent = Intent(activity, DetailLinkActivity::class.java)
+            intent.putExtra(Flag.URL_KEY,linkPath1)
+            startActivity(intent)
+        }
+        iv_bottom.setOnClickListener {
+            val intent: Intent = Intent(activity, DetailLinkActivity::class.java)
+            intent.putExtra(Flag.URL_KEY,linkPath2)
+            startActivity(intent)
+        }
     }
 
     private fun requestHomeData() {
@@ -76,6 +92,10 @@ class HomeFragment : Fragment() {
         // 两张图片的显示
         Glide.with(iv_top).load(result.data.company_list[0].image).into(iv_top)
         Glide.with(iv_bottom).load(result.data.ad_list[0].image).into(iv_bottom)
+
+        //webview
+        linkPath1 = result.data.ad_list[0].link;
+        linkPath2 = result.data.company_list[0].link;
     }
 
     /**
